@@ -2,7 +2,7 @@ import math
 
 
 def print_functions():
-    print("Choose function to compare:")
+    print("Choose equation to solve:")
     print("1) y' = -2 * y " + "\n" +
           "2) y' = y * (x^2 + 1)" + "\n" +
           "3) y' = sin(x) + y")
@@ -25,9 +25,9 @@ def get_derivative_of_function(number, x, C):
     if number == 1:
         return C * math.exp(-2 * x)
     elif number == 2:
-        return C * math.exp(x ** 3 / 3 + x)
+        return C * math.exp((x ** 3) / 3 + x)
     elif number == 3:
-        return math.log(math.exp(x))
+        return ((-math.sin(x)/2) - (math.cos(x)/2) + C*math.exp(x))
     return 0
 
 
@@ -35,6 +35,6 @@ def calculate_C(number, x, y):
     if number == 1:
         return y / math.exp(-2 * x)
     elif number == 2:
-        return y / math.exp(x ** 2)
+        return y / math.exp((x ** 3) / 3 + x)
     elif number == 3:
         return (y+(math.sin(x)/2)+(math.cos(x)/2))/math.exp(x)

@@ -10,10 +10,10 @@ def start_ui():
         functions.print_functions()
         functions_id = is_number(input())
         if (functions_id >= 1 and functions_id <= 3):
-            borders = enter_borders()
+            n = enter_amount()
             h = enter_step()
             initial_point = enter_initial_point()
-            result_points = runge_kutta.runge_kutta_solve(initial_point, functions_id, h, borders)
+            result_points = runge_kutta.runge_kutta_solve(initial_point, functions_id, h, n)
             print_result(result_points)
             graph.plot_graph(functions_id, result_points)
             print("Look at the graph!")
@@ -22,18 +22,10 @@ def start_ui():
             break
 
 
-def enter_borders():
-    borders = []
-    print("Enter left border: ")
-    a = is_number(input())
-    print("Enter right border: ")
-    b = is_number(input())
-    if b <= a:
-        print_error("Error! Right border must be greater than left border!")
-        sys.exit()
-    borders = [a, b]
-    return borders
-
+def enter_amount():
+    print("Enter n: ")
+    n = int(input())
+    return n
 
 def enter_step():
     print("Enter h (step): ")
@@ -45,9 +37,12 @@ def enter_step():
 
 
 def enter_initial_point():
+    print("Enter the initial value of x: ")
+    x = is_number(input())
     print("Enter the initial value of y: ")
     y = is_number(input())
-    return y
+    initial_point = [x, y]
+    return initial_point
 
 def print_result(points):
     for i in points:
